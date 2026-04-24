@@ -27,10 +27,10 @@
   "extra": {
     "wordpress-install-dir": "wordpress",
     "installer-paths": {
-      "wp-content/plugins/{$name}/": [
+      "wordpress/wp-content/plugins/{$name}/": [
         "type:wordpress-plugin"
       ],
-      "wp-content/themes/{$name}/": [
+      "wordpress/wp-content/themes/{$name}/": [
         "type:wordpress-theme"
       ]
     }
@@ -42,11 +42,12 @@
   },
   "autoload": {
     "psr-4": {
-      "ICube\\": "wp-content/plugins/icube-custom/src/",
-      "ICubeTheme\\": "wp-content/themes/icube-custom/src/"
+      "ICube\\": "wordpress/wp-content/plugins/icube-custom/src/",
+      "ICubeTheme\\": "wordpress/wp-content/themes/icube-cms-theme/src/"
     },
     "files": [
-      "wp-content/mu-plugins/autoloader.php"
+      "wordpress/wp-content/mu-plugins/autoloader.php"
     ]
   }
 }
+

@@ -17,9 +17,10 @@ get_header();
                     <a class="btn btn-secondary" href="<?php echo esc_url(icube_theme_setting('icube_secondary_cta_link', '/blog')); ?>"><?php echo esc_html(icube_theme_setting('icube_secondary_cta_text', 'View case studies')); ?></a>
                 </div>
             </div>
-            <div class="hero-visual" aria-hidden="true">
-                <!-- Background/illustration area; add image or SVG as needed -->
+            <div class="hero-visual" aria-hidden="true" id="hero-image-container">
+                <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/hero-bg.png'); ?>" alt="Digital Product Studio Visualization">
             </div>
+
         </div>
     </section>
 
