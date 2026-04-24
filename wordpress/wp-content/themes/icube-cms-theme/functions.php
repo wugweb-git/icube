@@ -15,6 +15,8 @@ add_action('after_setup_theme', static function (): void {
 });
 
 add_action('wp_enqueue_scripts', static function (): void {
+    // Load Inter from Google Fonts and the theme stylesheet
+    wp_enqueue_style('icube-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap', [], null);
     wp_enqueue_style(
         'icube-cms-theme-style',
         get_stylesheet_uri(),

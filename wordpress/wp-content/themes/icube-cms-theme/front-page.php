@@ -8,25 +8,22 @@ get_header();
 <main>
     <section class="hero">
         <div class="container hero-grid">
-            <div>
+            <div class="hero-content">
                 <p class="eyebrow"><?php echo esc_html(icube_theme_setting('icube_eyebrow', 'Digital Product Studio')); ?></p>
-                <h1><?php echo esc_html(icube_theme_setting('icube_hero_title', 'Build impact-focused digital experiences with iCube.')); ?></h1>
-                <p><?php echo esc_html(icube_theme_setting('icube_hero_copy', 'We partner with ambitious teams to launch scalable websites, products, and growth systems powered by modern engineering and design.')); ?></p>
+                <h1 class="hero-title"><?php echo esc_html(icube_theme_setting('icube_hero_title', 'Build impact-focused digital experiences with iCube.')); ?></h1>
+                <p class="hero-copy"><?php echo esc_html(icube_theme_setting('icube_hero_copy', 'We partner with ambitious teams to launch scalable websites, products, and growth systems powered by modern engineering and design.')); ?></p>
                 <div class="hero-actions">
                     <a class="btn btn-primary" href="<?php echo esc_url(icube_theme_setting('icube_primary_cta_link', '/contact')); ?>"><?php echo esc_html(icube_theme_setting('icube_primary_cta_text', 'Start a project')); ?></a>
                     <a class="btn btn-secondary" href="<?php echo esc_url(icube_theme_setting('icube_secondary_cta_link', '/blog')); ?>"><?php echo esc_html(icube_theme_setting('icube_secondary_cta_text', 'View case studies')); ?></a>
                 </div>
             </div>
-            <div class="stat-grid">
-                <article class="stat-card"><strong>120+</strong> Digital products launched</article>
-                <article class="stat-card"><strong>95%</strong> Client retention rate</article>
-                <article class="stat-card"><strong>8x</strong> Avg. growth for partner brands</article>
-                <article class="stat-card"><strong>24/7</strong> Delivery & support coverage</article>
+            <div class="hero-visual" aria-hidden="true">
+                <!-- Background/illustration area; add image or SVG as needed -->
             </div>
         </div>
     </section>
 
-    <section class="section">
+    <section class="section what-we-do">
         <div class="container">
             <h2>What we do</h2>
             <div class="cards">
