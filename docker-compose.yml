@@ -1,0 +1,32 @@
+services:
+  db:
+    image: mysql:8.1
+    container_name: icube_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: u544169507_icube
+      MYSQL_USER: u544169507_icube
+      MYSQL_PASSWORD: 'WugWeb123@'
+      MYSQL_ROOT_PASSWORD: 'rootpass'
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  wordpress:
+    image: wordpress:latest
+    container_name: icube_wordpress
+    depends_on:
+      - db
+    ports:
+      - "8000:80"
+    volumes:
+      - ./wordpress:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: u544169507_icube
+      WORDPRESS_DB_PASSWORD: 'WugWeb123@'
+      WORDPRESS_DB_NAME: u544169507_icube
+
+volumes:
+  db_data:
