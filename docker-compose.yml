@@ -27,6 +27,8 @@ services:
       WORDPRESS_DB_USER: u544169507_icube
       WORDPRESS_DB_PASSWORD: 'WugWeb123@'
       WORDPRESS_DB_NAME: u544169507_icube
+      ICUBE_ENABLE_FIGMA_REDIRECT: 'false'
+      ICUBE_FIGMA_SITE_URL: 'https://icube-website.figma.site/'
 
 volumes:
   db_data:
