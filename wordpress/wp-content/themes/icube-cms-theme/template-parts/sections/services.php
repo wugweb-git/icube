@@ -1,74 +1,73 @@
 <?php
 /**
- * Section: Services — "What we help you build"
- * Figma nodes: 256:2664 (header) + 256:2672 (bento grid)
- * Grid: row-1 = 2 wide cards (592px), row-2 = 3 narrow cards (389px)
+ * Section: Services Bento Grid
+ * Figma: "11" — 256:1479, y=923, h=1200
+ *   Header: 256:2664 "What we help you build" (h2 + p)
+ *   Grid:   256:2672 "Frame 6"
+ *     Row 1 (256:2673): 2 wide cards at 592px each — gap 16px
+ *     Row 2 (256:2676): 3 narrow cards at 389px each — gap 16px
  * Component: template-parts/components/service-card.php
+ * Images: services/digital-transformation.png, outsystems.png,
+ *         enterprise-app.png, mobile-app.png, maintenance.png
  */
-$img_uri = get_template_directory_uri() . '/assets/images/services';
+$img = get_template_directory_uri() . '/assets/images/services';
 
-$services_row1 = [
+$row1 = [
     [
         'title' => 'Digital Transformation Consulting',
         'desc'  => 'Define strategy, roadmap, and execution for enterprise systems.',
-        'link'  => '#',
-        'image' => $img_uri . '/digital-transformation.png',
+        'link'  => '/services/digital-transformation',
+        'image' => $img . '/digital-transformation.png',
         'wide'  => true,
     ],
     [
         'title' => 'OutSystems Development',
         'desc'  => 'Build and deploy scalable low-code applications faster.',
-        'link'  => '#',
-        'image' => $img_uri . '/outsystems.png',
+        'link'  => '/services/outsystems',
+        'image' => $img . '/outsystems.png',
         'wide'  => true,
     ],
 ];
-
-$services_row2 = [
+$row2 = [
     [
         'title' => 'Enterprise Application Development',
         'desc'  => 'Custom web and enterprise systems tailored to business workflows.',
-        'link'  => '#',
-        'image' => $img_uri . '/enterprise-app.png',
+        'link'  => '/services/enterprise-application',
+        'image' => $img . '/enterprise-app.png',
         'wide'  => false,
     ],
     [
         'title' => 'Mobile App Development',
         'desc'  => 'Native and cross-platform mobile applications.',
-        'link'  => '#',
-        'image' => $img_uri . '/mobile-app.png',
+        'link'  => '/services/mobile-app',
+        'image' => $img . '/mobile-app.png',
         'wide'  => false,
     ],
     [
-        'title' => 'Application Maintenance &amp; Support',
+        'title' => 'Application Maintenance & Support',
         'desc'  => 'Continuous monitoring, optimization, and system enhancements.',
-        'link'  => '#',
-        'image' => $img_uri . '/maintenance.png',
+        'link'  => '/services/maintenance',
+        'image' => $img . '/maintenance.png',
         'wide'  => false,
     ],
 ];
 ?>
-<section class="services-section" id="services" aria-labelledby="services-heading">
-    <!-- Section header -->
-    <header class="services-section__header">
-        <span class="services-section__eyebrow">Services</span>
-        <h2 class="services-section__title" id="services-heading">What we help you build</h2>
-        <p class="services-section__desc">End-to-end delivery &mdash; from strategy to enterprise application development.</p>
+<section class="services" id="services" aria-labelledby="services-title">
+    <header class="services__header">
+        <h2 class="services__title" id="services-title">What we help you build</h2>
+        <p  class="services__desc">End-to-end delivery &mdash; from strategy to enterprise application development.</p>
     </header>
 
-    <!-- Bento grid -->
-    <div class="services-section__grid">
-        <!-- Row 1: two wide cards -->
-        <div class="services-section__row services-section__row--2">
-            <?php foreach ($services_row1 as $card): ?>
-                <?php get_template_part('template-parts/components/service-card', null, $card); ?>
-            <?php endforeach; ?>
+    <div class="services__grid">
+        <div class="services__row services__row--2">
+            <?php foreach ( $row1 as $card ) :
+                get_template_part( 'template-parts/components/service-card', null, $card );
+            endforeach; ?>
         </div>
-        <!-- Row 2: three narrow cards -->
-        <div class="services-section__row services-section__row--3">
-            <?php foreach ($services_row2 as $card): ?>
-                <?php get_template_part('template-parts/components/service-card', null, $card); ?>
-            <?php endforeach; ?>
+        <div class="services__row services__row--3">
+            <?php foreach ( $row2 as $card ) :
+                get_template_part( 'template-parts/components/service-card', null, $card );
+            endforeach; ?>
         </div>
     </div>
 </section>

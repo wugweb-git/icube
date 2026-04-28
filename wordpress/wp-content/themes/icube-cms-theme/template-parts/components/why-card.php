@@ -1,37 +1,38 @@
 <?php
 /**
- * Component: Why iCube Card
- * Figma: "DivContainerX" cards in 256:2779
- * Reusable on any page needing a feature/differentiator card
+ * Component: Why Card
+ * Figma: 4 cards in "12" section (256:2779 > DivContainerX > 256:929–932)
+ * - dark cards: photo bg + gradient overlay, white text
+ * - light cards: surface/default bg, dark text
+ * Recycled on: homepage, /about, /services
  *
  * $args:
- *   $args['title']    string  Card heading
- *   $args['desc']     string  Card description
- *   $args['style']    string  'dark' or 'light'
- *   $args['bg_image'] string  URI to background photo (dark cards only)
- *   $args['icon']     string  URI to 50×50 icon SVG
+ *   title     string  Card heading
+ *   desc      string  Description (20px)
+ *   style     string  'dark' | 'light'
+ *   bg_image  string  URI to full-bleed photo (dark cards only)
+ *   icon      string  URI to 50×50 icon SVG
  */
 $title    = $args['title']    ?? '';
 $desc     = $args['desc']     ?? '';
 $style    = $args['style']    ?? 'dark';
 $bg_image = $args['bg_image'] ?? '';
 $icon     = $args['icon']     ?? '';
-$cls      = 'why-card why-card--' . $style;
 ?>
-<div class="<?php echo esc_attr($cls); ?>">
-    <?php if ($style === 'dark' && $bg_image): ?>
-    <div class="why-card__bg" style="background-image:url('<?php echo esc_url($bg_image); ?>')"></div>
-    <div class="why-card__bg-overlay"></div>
-    <?php elseif ($style === 'light'): ?>
-    <div class="why-card__bg why-card__bg--texture"></div>
+<div class="why-card why-card--<?php echo esc_attr( $style ); ?>">
+    <?php if ( $style === 'dark' && $bg_image ) : ?>
+        <div class="why-card__photo" aria-hidden="true">
+            <img src="<?php echo esc_url( $bg_image ); ?>" alt="">
+        </div>
+        <div class="why-card__overlay" aria-hidden="true"></div>
     <?php endif; ?>
-    <div class="why-card__content">
-        <?php if ($icon): ?>
-        <div class="why-card__icon">
-            <img src="<?php echo esc_url($icon); ?>" alt="" width="50" height="50" aria-hidden="true">
+    <div class="why-card__inner">
+        <?php if ( $icon ) : ?>
+        <div class="why-card__icon" aria-hidden="true">
+            <img src="<?php echo esc_url( $icon ); ?>" alt="" width="50" height="50">
         </div>
         <?php endif; ?>
-        <h3 class="why-card__title"><?php echo esc_html($title); ?></h3>
-        <p class="why-card__desc"><?php echo esc_html($desc); ?></p>
+        <h3 class="why-card__title"><?php echo esc_html( $title ); ?></h3>
+        <p  class="why-card__desc"><?php echo esc_html( $desc ); ?></p>
     </div>
 </div>

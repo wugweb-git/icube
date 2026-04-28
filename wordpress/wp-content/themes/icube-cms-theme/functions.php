@@ -1,62 +1,81 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-if (!defined('ABSPATH')) {
-    exit;
-}
-
-add_action('after_setup_theme', static function (): void {
-    add_theme_support('title-tag');
-    add_theme_support('post-thumbnails');
-    add_theme_support('custom-logo');
-
+/* ─── Theme Setup ───────────────────────────────────────────────────── */
+add_action( 'after_setup_theme', function () {
+    add_theme_support( 'title-tag' );
+    add_theme_support( 'post-thumbnails' );
+    add_theme_support( 'custom-logo' );
     register_nav_menus([
-        'primary' => __('Primary Menu', 'icube-cms-theme'),
+        'primary' => __( 'Primary Menu', 'icube-cms-theme' ),
     ]);
 });
 
-add_action('wp_enqueue_scripts', static function (): void {
-    // Load Inter from Google Fonts and the theme stylesheet
-    wp_enqueue_style('icube-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap', [], null);
+/* ─── Enqueue ───────────────────────────────────────────────────────── */
+add_action( 'wp_enqueue_scripts', function () {
+    $ver = wp_get_theme()->get( 'Version' );
+
     wp_enqueue_style(
-        'icube-cms-theme-style',
+        'icube-fonts',
+        'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap',
+        [], null
+    );
+    wp_enqueue_style(
+        'icube-style',
         get_stylesheet_uri(),
-        [],
-        wp_get_theme()->get('Version')
+        [ 'icube-fonts' ],
+        $ver
+    );
+    wp_enqueue_script(
+        'icube-marquee',
+        get_template_directory_uri() . '/assets/js/marquee.js',
+        [], $ver, true
     );
 });
 
-add_action('customize_register', static function (WP_Customize_Manager $wp_customize): void {
-    $wp_customize->add_section('icube_homepage', [
-        'title' => __('Homepage Content', 'icube-cms-theme'),
-        'priority' => 30,
+/* ─── Register CPT: Insight (blog) ─────────────────────────────────── */
+add_action( 'init', function () {
+    register_post_type( 'insight', [
+        'label'               => 'Insights',
+        'public'              => true,
+        'show_in_rest'        => true,
+        'supports'            => [ 'title', 'editor', 'thumbnail', 'excerpt', 'custom-fields' ],
+        'has_archive'         => true,
+        'rewrite'             => [ 'slug' => 'insights' ],
+        'menu_icon'           => 'dashicons-welcome-learn-more',
     ]);
 
+    register_post_type( 'case_study', [
+        'label'               => 'Case Studies',
+        'public'              => true,
+        'show_in_rest'        => true,
+        'supports'            => [ 'title', 'editor', 'thumbnail', 'excerpt', 'custom-fields' ],
+        'has_archive'         => true,
+        'rewrite'             => [ 'slug' => 'case-studies' ],
+        'menu_icon'           => 'dashicons-groups',
+    ]);
+});
+
+/* ─── Customizer ────────────────────────────────────────────────────── */
+add_action( 'customize_register', function ( WP_Customize_Manager $wp_customize ) {
+    $wp_customize->add_section( 'icube_hero', [
+        'title'    => 'Hero Section',
+        'priority' => 30,
+    ]);
     $fields = [
-        'icube_eyebrow' => ['label' => 'Hero Eyebrow', 'default' => 'Digital Product Studio'],
-        'icube_hero_title' => ['label' => 'Hero Title', 'default' => 'Build impact-focused digital experiences with iCube.'],
-        'icube_hero_copy' => ['label' => 'Hero Description', 'default' => 'We partner with ambitious teams to launch scalable websites, products, and growth systems powered by modern engineering and design.'],
-        'icube_primary_cta_text' => ['label' => 'Primary CTA Text', 'default' => 'Start a project'],
-        'icube_primary_cta_link' => ['label' => 'Primary CTA Link', 'default' => '/contact'],
-        'icube_secondary_cta_text' => ['label' => 'Secondary CTA Text', 'default' => 'View case studies'],
-        'icube_secondary_cta_link' => ['label' => 'Secondary CTA Link', 'default' => '/blog'],
+        'icube_hero_eyebrow' => [ 'label' => 'Eyebrow text',      'default' => 'Teams across enterprise and regulated industries' ],
+        'icube_hero_title'   => [ 'label' => 'Hero title',        'default' => 'Enterprise Applications Built Faster with Low-Code. Time is money.' ],
+        'icube_hero_sub'     => [ 'label' => 'Hero subtitle',     'default' => 'We design and deliver scalable enterprise systems using OutSystems and modern technologies for organizations across Singapore and Southeast Asia.' ],
+        'icube_cta_consult'  => [ 'label' => 'CTA: Consultation URL', 'default' => '/book-consultation' ],
+        'icube_cta_services' => [ 'label' => 'CTA: Services URL', 'default' => '/services' ],
     ];
-
-    foreach ($fields as $id => $config) {
-        $wp_customize->add_setting($id, [
-            'default' => $config['default'],
-            'sanitize_callback' => 'sanitize_text_field',
-        ]);
-
-        $wp_customize->add_control($id, [
-            'label' => __($config['label'], 'icube-cms-theme'),
-            'section' => 'icube_homepage',
-            'type' => 'text',
-        ]);
+    foreach ( $fields as $id => $cfg ) {
+        $wp_customize->add_setting( $id, [ 'default' => $cfg['default'], 'sanitize_callback' => 'sanitize_text_field' ]);
+        $wp_customize->add_control( $id, [ 'label' => $cfg['label'], 'section' => 'icube_hero', 'type' => 'text' ]);
     }
 });
 
-function icube_theme_setting(string $id, string $fallback): string
-{
-    $value = get_theme_mod($id, $fallback);
-    return is_string($value) && $value !== '' ? $value : $fallback;
+function icube_mod( string $id, string $fallback = '' ): string {
+    $v = get_theme_mod( $id, $fallback );
+    return ( is_string( $v ) && $v !== '' ) ? $v : $fallback;
 }

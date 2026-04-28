@@ -1,41 +1,43 @@
 <?php
 /**
  * Component: Service Card (Bento Card)
- * Figma: "Bento Cards" instances in 256:2672
- * Reusable in: services section, any page needing a service tile
+ * Figma: "Bento Cards" — nodes 256:2674–2679 inside 256:2672
+ * Recycled on: /services, /services/[slug], homepage
  *
- * Args (via $args or set before get_template_part):
- *   $args['title']       string  Card title
- *   $args['desc']        string  Card description
- *   $args['link']        string  URL for "Learn more"
- *   $args['image']       string  Absolute path or URI to card image
- *   $args['image_alt']   string  Alt text
- *   $args['wide']        bool    True = row-1 wide card, False = row-2 narrow card
+ * $args:
+ *   title      string  Card heading
+ *   desc       string  One-line description
+ *   link       string  "Learn more" URL
+ *   image      string  Full URI to card image (310×366 or wider for wide cards)
+ *   image_alt  string  Alt text (defaults to title)
+ *   wide       bool    true = row-1 half-width card, false = row-2 third-width card
  */
-$title     = $args['title']     ?? 'Service';
+$title     = $args['title']     ?? '';
 $desc      = $args['desc']      ?? '';
 $link      = $args['link']      ?? '#';
 $image     = $args['image']     ?? '';
-$image_alt = $args['image_alt'] ?? esc_attr($title);
-$wide      = $args['wide']      ?? false;
-$cls       = $wide ? 'svc-card svc-card--wide' : 'svc-card svc-card--narrow';
+$image_alt = $args['image_alt'] ?? esc_attr( $title );
+$wide      = ! empty( $args['wide'] );
 ?>
-<div class="<?php echo esc_attr($cls); ?>">
-    <div class="svc-card__text">
-        <div class="svc-card__info">
-            <h3 class="svc-card__title"><?php echo esc_html($title); ?></h3>
-            <p class="svc-card__desc"><?php echo esc_html($desc); ?></p>
+<article class="svc-card<?php echo $wide ? ' svc-card--wide' : ''; ?>">
+    <div class="svc-card__body">
+        <div class="svc-card__copy">
+            <h3 class="svc-card__title"><?php echo esc_html( $title ); ?></h3>
+            <p  class="svc-card__desc"><?php echo esc_html( $desc ); ?></p>
         </div>
-        <a href="<?php echo esc_url($link); ?>" class="svc-card__link">
+        <a href="<?php echo esc_url( $link ); ?>" class="svc-card__link">
             Learn more
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </a>
     </div>
-    <?php if ($image): ?>
-    <div class="svc-card__img<?php echo $wide ? ' svc-card__img--wide' : ''; ?>">
-        <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($image_alt); ?>" loading="lazy">
+    <?php if ( $image ) : ?>
+    <div class="svc-card__img">
+        <img src="<?php echo esc_url( $image ); ?>"
+             alt="<?php echo esc_attr( $image_alt ); ?>"
+             loading="lazy">
     </div>
     <?php endif; ?>
-</div>
+</article>
