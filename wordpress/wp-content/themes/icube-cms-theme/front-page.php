@@ -5,67 +5,177 @@ if (!defined('ABSPATH')) {
 get_header();
 ?>
 <main>
-    <section class="hero">
-        <div class="container">
-            <div class="hero-trusted">
-                <span>Trusted by</span>
-                <span>Teams across enterprise and regulated industries</span>
+
+    <!-- ===== HERO (Figma node 256:1227) ===== -->
+    <section class="hero-split">
+        <!-- Left: dark navy text panel -->
+        <div class="hero-left">
+            <div class="hero-inner">
+                <div class="hero-bg-overlay"
+                     style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/images/hero-bg.png');"></div>
+                <div class="hero-content">
+                    <div class="hero-eyebrow">
+                        <svg class="star-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z" fill="#BFD6F2"/>
+                        </svg>
+                        <span class="eyebrow-text">Trusted by <span class="eyebrow-highlight">Teams across enterprise and regulated industries</span></span>
+                    </div>
+                    <h1 class="hero-title">Enterprise Applications Built Faster with Low-Code.<br>Time is money.</h1>
+                    <p class="hero-sub">We design and deliver scalable enterprise systems using OutSystems and modern technologies for organizations across Singapore and Southeast Asia.</p>
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn btn-blue">Book Consultation</a>
+                        <a href="#services" class="btn btn-white-solid">View Services</a>
+                    </div>
+                </div>
             </div>
-            <h1>Enterprise Applications Built Faster with Low-Code. <br/>Time is money.</h1>
-            <p>We design and deliver scalable enterprise systems using OutSystems and modern technologies for organizations across Singapore and Southeast Asia.</p>
-            <div class="hero-cta flex">
-                <a href="#" class="btn btn-outline-white">Book Consultation</a>
-                <a href="#" class="btn btn-white">View Services</a>
+        </div>
+        <!-- Right: illustration + floating stat card -->
+        <div class="hero-right">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/hero-illustration.png"
+                 alt="Enterprise platform dashboard"
+                 class="hero-illustration" />
+            <!-- Floating 30K stat card (Figma node 256:1248) -->
+            <div class="hero-stat-card">
+                <div class="stat-avatars">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/avatar-1.png" alt="" class="stat-avatar" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/avatar-2.png" alt="" class="stat-avatar" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/avatar-3.png" alt="" class="stat-avatar" />
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/avatar-4.png" alt="" class="stat-avatar" />
+                </div>
+                <div class="stat-text">
+                    <span class="stat-number">30K</span>
+                    <span class="stat-label">Happy customer we have world-wide.</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="stats-trust">
-        <div class="container">
-            <div class="stat-box flex" style="align-items: center; gap: 24px;">
-                <h2>30K</h2>
-                <p>Happy customer we have world-wide.</p>
-            </div>
-            <div class="trust-box">
-                <h3>Built by teams with experience across</h3>
-                <div class="logos">
-                    <div></div><div></div><div></div><div></div>
+    <!-- ===== TRUSTED BRANDS MARQUEE (Figma node 256:1258) ===== -->
+    <section class="trusted-section">
+        <p class="trusted-heading">Built by teams with experience across</p>
+        <div class="marquee-wrapper">
+            <div class="marquee-fade marquee-fade-left"></div>
+            <div class="marquee-fade marquee-fade-right"></div>
+            <div class="marquee-track">
+                <?php
+                $logos = [
+                    ['src' => 'microsoft.png',    'alt' => 'Microsoft'],
+                    ['src' => 'google.png',        'alt' => 'Google'],
+                    ['src' => 'accenture.png',     'alt' => 'Accenture'],
+                    ['src' => 'goldman-sachs.png', 'alt' => 'Goldman Sachs'],
+                    ['src' => 'ibm.png',           'alt' => 'IBM'],
+                ];
+                $all_logos = array_merge($logos, $logos); // duplicate for seamless loop
+                foreach ($all_logos as $logo): ?>
+                <div class="marquee-item">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logos/<?php echo esc_attr($logo['src']); ?>"
+                         alt="<?php echo esc_attr($logo['alt']); ?>"
+                         class="marquee-logo" />
                 </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
 
-    <section class="services">
-        <div class="container">
-            <div class="services-header">
-                <h2>What we help you build</h2>
-                <p>End-to-end delivery — from strategy to enterprise <br/>application development.</p>
+    <!-- ===== SERVICES (Figma node 256:1138 + 256:1146) ===== -->
+    <section class="services-section" id="services">
+        <div class="services-header-block">
+            <span class="services-eyebrow">Services</span>
+            <h2 class="services-title">Get to know iCube</h2>
+            <p class="services-desc">End-to-end digital transformation, from strategy to enterprise application delivery.</p>
+        </div>
+
+        <div class="services-cards">
+            <!-- Row 1: Two wide cards -->
+            <div class="services-row services-row-2">
+                <div class="svc-card">
+                    <div class="svc-card-text">
+                        <div class="svc-card-info">
+                            <h3 class="svc-title">Digital Transformation Consulting</h3>
+                            <p class="svc-desc">Define strategy, roadmap, and execution for enterprise systems.</p>
+                        </div>
+                        <a href="#" class="svc-link">Learn more
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="svc-card-img">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/services/digital-transformation.png"
+                             alt="Digital Transformation Consulting" />
+                    </div>
+                </div>
+                <div class="svc-card">
+                    <div class="svc-card-text">
+                        <div class="svc-card-info">
+                            <h3 class="svc-title">OutSystems Development</h3>
+                            <p class="svc-desc">Build and deploy scalable low-code applications faster.</p>
+                        </div>
+                        <a href="#" class="svc-link">Learn more
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="svc-card-img">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/services/outsystems.png"
+                             alt="OutSystems Development" />
+                    </div>
+                </div>
             </div>
-            <div class="services-grid grid">
-                <div class="service-card light">
-                    <h3>Digital Transformation Consulting</h3>
-                    <p>Define strategy, roadmap, and execution for enterprise systems.</p>
-                    <a href="#" class="btn btn-primary">Know More</a>
+
+            <!-- Row 2: Three equal cards -->
+            <div class="services-row services-row-3">
+                <div class="svc-card">
+                    <div class="svc-card-text">
+                        <div class="svc-card-info">
+                            <h3 class="svc-title">Enterprise Application Development</h3>
+                            <p class="svc-desc">Custom web and enterprise systems tailored to business workflows.</p>
+                        </div>
+                        <a href="#" class="svc-link">Learn more
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="svc-card-img">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/services/enterprise-app.png"
+                             alt="Enterprise Application Development" />
+                    </div>
                 </div>
-                <div class="service-card dark">
-                    <h3>OutSystems Development</h3>
-                    <p>Build and deploy scalable low-code applications faster.</p>
-                    <a href="#" class="btn btn-white">Know More</a>
+                <div class="svc-card">
+                    <div class="svc-card-text">
+                        <div class="svc-card-info">
+                            <h3 class="svc-title">Mobile App Development</h3>
+                            <p class="svc-desc">Native and cross-platform mobile applications.</p>
+                        </div>
+                        <a href="#" class="svc-link">Learn more
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="svc-card-img svc-card-img--fade">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/services/mobile-app.png"
+                             alt="Mobile App Development" />
+                    </div>
                 </div>
-                <div class="service-card light">
-                    <h3>Mobile App Development</h3>
-                    <p>Native and cross-platform <br/>mobile applications.</p>
-                    <a href="#" class="btn btn-primary">Know More</a>
-                </div>
-                <div class="service-card dark">
-                    <h3>Enterprise Application Development</h3>
-                    <p>Custom web and enterprise systems tailored to business workflows.</p>
-                    <a href="#" class="btn btn-white">Know More</a>
-                </div>
-                <div class="service-card light">
-                    <h3>Application Maintenance & Support</h3>
-                    <p>Continuous monitoring, optimization, and system enhancements.</p>
-                    <a href="#" class="btn btn-primary">Know More</a>
+                <div class="svc-card">
+                    <div class="svc-card-text">
+                        <div class="svc-card-info">
+                            <h3 class="svc-title">Application Maintenance &amp; Support</h3>
+                            <p class="svc-desc">Continuous monitoring, optimization, and system enhancements.</p>
+                        </div>
+                        <a href="#" class="svc-link">Learn more
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="svc-card-img svc-card-img--fade">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/services/maintenance.png"
+                             alt="Application Maintenance &amp; Support" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -154,7 +264,7 @@ get_header();
         </div>
     </section>
 
-    <section class="split-section">
+    <section class="split-section" id="contact">
         <div class="split-half left cta-section">
             <div class="eyebrow">30 minutes. Your content. Live Results.</div>
             <h2>Start your digital <br/>transformation</h2>
@@ -166,7 +276,7 @@ get_header();
             <div class="disclaimer">No sales pressure. Focused discussion on your requirements.</div>
         </div>
         <div class="split-half right testi-2">
-            <p class="quote">“Our team moves faster because they know exactly what's compliant. And our compliance team finally focuses on real work, not chasing down emails.”</p>
+            <p class="quote">"Our team moves faster because they know exactly what's compliant. And our compliance team finally focuses on real work, not chasing down emails."</p>
             <div class="author">
                 <h4>Head of compliance</h4>
                 <span>Large Broker-Dealer</span>

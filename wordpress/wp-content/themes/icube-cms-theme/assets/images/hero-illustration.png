@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 544">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b2a6d"/>
+      <stop offset="100%" stop-color="#0053a6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="544" fill="url(#g)"/>
+  <!-- Dashboard mockup lines -->
+  <rect x="80" y="60" width="1040" height="30" rx="6" fill="rgba(255,255,255,0.08)"/>
+  <rect x="80" y="110" width="480" height="200" rx="10" fill="rgba(255,255,255,0.06)"/>
+  <rect x="580" y="110" width="540" height="90" rx="10" fill="rgba(255,255,255,0.06)"/>
+  <rect x="580" y="215" width="260" height="95" rx="10" fill="rgba(255,255,255,0.06)"/>
+  <rect x="860" y="215" width="260" height="95" rx="10" fill="rgba(255,255,255,0.06)"/>
+  <rect x="80" y="330" width="320" height="160" rx="10" fill="rgba(255,255,255,0.06)"/>
+  <rect x="420" y="330" width="320" height="160" rx="10" fill="rgba(255,255,255,0.06)"/>
+  <rect x="760" y="330" width="360" height="160" rx="10" fill="rgba(255,255,255,0.06)"/>
+  <!-- Accent bars -->
+  <rect x="100" y="130" width="180" height="8" rx="4" fill="rgba(191,214,242,0.5)"/>
+  <rect x="100" y="150" width="120" height="6" rx="3" fill="rgba(255,255,255,0.2)"/>
+  <rect x="100" y="168" width="150" height="6" rx="3" fill="rgba(255,255,255,0.15)"/>
+  <text x="600" y="490" font-family="Inter,sans-serif" font-size="14" fill="rgba(255,255,255,0.3)" text-anchor="middle">Replace with hero-illustration.png</text>
+</svg>
