@@ -1,0 +1,17 @@
+# Apache: WordPress in /wordpress subdirectory, served from /icube root
+# Public URL  : http://wugweb.design/icube
+# WP files at : http://wugweb.design/icube/wordpress
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /icube/
+
+# Don't rewrite real files or directories (design/, wordpress/wp-admin, etc.)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Route everything else through WordPress index.php at repo root
+RewriteRule ^index\.php$ - [L]
+RewriteRule . /icube/index.php [L]
+</IfModule>

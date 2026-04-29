@@ -27,8 +27,8 @@ add_action( 'wp_enqueue_scripts', function () {
         $ver
     );
     wp_enqueue_script(
-        'icube-marquee',
-        get_template_directory_uri() . '/assets/js/marquee.js',
+        'icube-nav',
+        get_template_directory_uri() . '/assets/js/nav.js',
         [], $ver, true
     );
 });
